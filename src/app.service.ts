@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
@@ -25,7 +26,7 @@ export class AppService {
       };
       return this.httpService
         .get(url, { headers })
-        .pipe(map((response) => response.data));
+        .pipe(map((response) => response.data?.results));
     } catch (error) {
       console.error('Error fetching games:', error);
       throw new Error('Failed to fetch games');
