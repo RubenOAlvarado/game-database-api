@@ -32,4 +32,19 @@ export class AppService {
       throw new Error('Failed to fetch games');
     }
   }
+
+  getGameDetails(slug: string): Observable<any> {
+    try {
+      const url = `${this.BASEURL}/${slug}?key=${this.APIKEY}`;
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      return this.httpService
+        .get(url, { headers })
+        .pipe(map((response) => response.data));
+    } catch (error) {
+      console.error('Error fetching game details:', error);
+      throw new Error('Failed to fetch game details');
+    }
+  }
 }
